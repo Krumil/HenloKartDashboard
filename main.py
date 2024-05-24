@@ -199,7 +199,8 @@ async def log_loop(start_block):
 
 
 # Start block for fetching events
-start_block = 14820784
+# start_block = 14820784
+start_block = 14888483
 start_block = fetch_events_in_batches(start_block)
 
 if __name__ == "__main__":
