@@ -12,17 +12,20 @@ app = FastAPI()
 app.add_websocket_route("/ws", websocket_endpoint)
 
 
-@app.on_event("startup")
-async def startup():
+async def startup_tasks():
     await database.connect()
-    start_block = 14820784
-    # start_block = 14833796
+    start_block = 14820784  # Adjust the starting block as needed
 
     # Perform the initial fetch
     latest_block = await initial_fetch(start_block)
 
     # Start continuous listening
     asyncio.create_task(continuous_listening(latest_block))
+
+
+@app.on_event("startup")
+async def startup():
+    asyncio.create_task(startup_tasks())
 
 
 @app.on_event("shutdown")
@@ -347,4 +350,4 @@ if __name__ == "__main__":
 # if __name__ == "__main__":
 #     import uvicorn
 
-#     uvicorn.run(app, host="0.0.0.0", port=8000)
+#     uvicorn.run(app, host="0.0.0.0", port=10000)
