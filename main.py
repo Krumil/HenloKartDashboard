@@ -9,6 +9,7 @@ from utils.helpers import serialize_record
 origins = [
     "http://localhost",
     "http://localhost:3000",
+    "https://henlo-kart-dashboard-frontend.vercel.app",
 ]
 
 app = FastAPI()
